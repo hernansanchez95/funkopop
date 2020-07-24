@@ -29,6 +29,7 @@ window.agregarFunko = function (event){
     localStorage.setItem("funkoKey", JSON.stringify(listaFunkos));
 
     limpiarFormulario();
+    leerProductos();
 }
 
 function limpiarFormulario(){
@@ -42,6 +43,42 @@ function leerProductos(){
         let _listaFunkos = JSON.parse(localStorage.getItem("funkoKey"));
         if(listaFunkos.length == 0){
             listaFunkos = _listaFunkos;
+        }
+        //Borrar tabla
+        borrarTabla();
+        //Dibujar tabla
+        dibujarTabla(_listaFunkos);
+    }
+}
+
+function dibujarTabla(_listaFunkos){
+    let tablaFunko = document.getElementById("tablaFunko");
+
+    let codHTML = "";
+
+    for(let i in _listaFunkos){
+        codHTML = `<tr>
+        <th scope="row">${_listaFunkos[i].codigo}</th>
+        <td>${_listaFunkos[i].nombre}</td>
+        <td>${_listaFunkos[i].numSerie}</td>
+        <td>${_listaFunkos[i].categoria}</td>
+        <td>${_listaFunkos[i].descripcion}</td>
+        <td>${_listaFunkos[i].imagen}</td>
+        <td>$${_listaFunkos[i].precio}</td>
+        <td>
+          <button class="btn btn-outline-info">Editar</button>
+          <button class="btn btn-outline-danger">Eliminar</button>
+        </td>
+      </tr>`;
+        tablaFunko.innerHTML += codHTML;
+    }
+}
+
+function borrarTabla(){
+    let tablaFunko = document.getElementById("tablaFunko"); 
+    if(tablaFunko.children.length > 0){
+        while (tablaFunko.firstChild){
+            tablaFunko.removeChild(tablaFunko.firstChild);
         }
     }
 }

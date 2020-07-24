@@ -63,7 +63,7 @@
               <th scope="col">Opciones</th>
             </tr>
           </thead>
-          <tbody>
+          <tbody id="tablaFunko">
             <tr>
               <th scope="row">1</th>
               <td>superman</td>
@@ -94,7 +94,7 @@
             </button>
           </div>
           <div class="modal-body">
-            <form onsubmit="agregarFunko(event)">
+            <form onsubmit="agregarFunko(event)" id="formProducto">
               <div class="form-group">
                 <label>Codigo</label>
                 <input type="text" class="form-control" id="codigo" placeholder="Ej:156">
